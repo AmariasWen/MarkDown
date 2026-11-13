@@ -1,0 +1,16 @@
+data/
+runtime/
+MarkDown.exe
+preview.jpg
+*.log
+*.tmp
+*.json.gz
+*.zip
+.env
+.env.*
+.shiyu-test-*/
+.markdown-recovery-*/
+.*-qa/
+.verify-ui/
+.review-sandbox/
+.launcher test */

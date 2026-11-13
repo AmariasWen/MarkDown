@@ -73,7 +73,7 @@ async function initialize() {
  try { await fs.access(library); } catch (error) { if(error.code!=='ENOENT') throw error;
  const now = Date.now(); const make = (title, body, type, category, tags, extra = {}) => ({id:crypto.randomUUID(), title, body, type, category, tags, created:now, updated:now, attachments:[], starred:false, pinned:false, deleted:false, ...extra});
  await atomic(library, {version:1, revision:crypto.randomUUID(), categories:['工作与项目','学习与成长','生活与日常','灵感收集'], notes:[
- make('欢迎来到你的灵感岛屿', '这里是MarkDown，一个只属于你的本地知识库。\n\n把值得保存的文字、截图和文件放在一起，让零散的信息慢慢长成自己的知识。\n\n试试点击这张卡片，编辑你的第一条笔记。\n\n这是一条示例记录，可以随时删除。', 'text','学习与成长',['使用指南','示例'],{pinned:true}),
+ make('欢迎来到你的灵感岛屿', '这里是MarkDown，一个只属于你的本地知识库。\n\n把值得保存的文字、截图和文件放在一起，让零散的信息慢慢长成自己的知识。\n\n点击卡片阅读预览，再点「编辑记录」开始编辑。\n\n这是一条示例记录，可以随时删除。', 'text','学习与成长',['使用指南','示例'],{pinned:true}),
  make('让记录成为一件轻松的小事', '不必每次都写一篇完整的文章。\n\n一个想法，一段摘录，一张截图，\n都是值得留下的开始。\n\n—— 示例便签', 'sticky','灵感收集',['灵感','示例'],{starred:true}),
  make('搭建自己的知识整理习惯', '01 / 收集：先记下来，不急着分类\n02 / 整理：给内容起一个容易找到的标题\n03 / 连接：用标签把相关想法串起来\n04 / 回顾：每周重新看看收藏\n\n示例笔记 · 你可以在这里写阅读摘录、项目资料或学习记录。','text','学习与成长',['知识管理','示例']),
  make('一个还没长大的想法', '做一个「以后想做的事」清单。\n不是待办，也没有截止日期。\n只是留给未来的自己，一点小小的期待。\n\n—— 示例便签','sticky','生活与日常',['生活','示例'])]});

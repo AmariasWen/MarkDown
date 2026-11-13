@@ -11,7 +11,7 @@
 </aside>
 <main>
  <header class="topbar"><div class="breadcrumb">我的空间 <span>/</span> <strong id="crumb">全部内容</strong></div><div class="top-actions"><label class="theme-picker"><span>样式</span><select id="themeSelect" aria-label="界面样式"><option value="fresh">清新 · 绿</option><option value="warm">暖纸 · 杏</option><option value="blue">雾蓝 · 蓝</option><option value="dark">暗夜 · 墨</option></select></label><span class="privacy"><span class="status-dot"></span> 数据仅在本机</span><span class="avatar">我</span></div></header>
- <div class="workspace">
+ <div class="workspace" id="libraryWorkspace">
   <section class="page-heading"><div><div class="eyebrow">A HOME FOR YOUR IDEAS</div><h1 id="pageTitle">把零散的灵感，慢慢拾起<span>。</span></h1><p id="pageSubtitle">截图、文字、文件，还有那些一闪而过的好想法。</p></div><div class="date-block"><span id="dateLabel"></span><small>今天也值得记录</small></div></section>
   <section class="capture"><div class="capture-icon">✧</div><button id="quickNote">此刻，你想记住什么？<small>写便签，或直接粘贴截图…</small></button><div class="capture-actions"><button id="uploadImage" title="添加截图与图片">▧ <span>截图</span></button><button id="uploadFile" title="添加文件">♧ <span>文件</span></button><button class="capture-plus" id="quickAdd" title="新建内容">＋</button></div></section>
   <section class="stats" id="stats"></section>
@@ -21,6 +21,17 @@
   <div class="active-tag" id="activeTag" hidden></div><div class="cards" id="cards"></div><div class="empty" id="empty" hidden><span>✧</span><h3>给灵感留一个位置</h3><p>新建一条记录，或把文件拖到这里。</p><button class="primary" id="emptyNew">＋ 新建记录</button></div>
   <footer><span>让收藏成为积累，让想法有所归处。</span><span>MARKDOWN / YOUR SECOND BRAIN</span></footer></section>
  </div>
+ <section id="reader" class="reader" aria-labelledby="readerTitle" hidden>
+  <aside class="reader-index" aria-label="预览内容切换">
+   <div class="reader-index-heading"><h2 id="readerIndexTitle">全部内容</h2><span id="readerIndexCount" aria-live="polite"></span><div class="view-switch"><button type="button" id="readerGridView" title="卡片视图" aria-label="预览卡片视图">▦</button><button type="button" id="readerListView" title="列表视图" aria-label="预览列表视图">☷</button></div></div>
+   <div class="reader-index-controls"><label class="reader-search"><span>⌕</span><input id="readerSearch" type="search" placeholder="快速搜索标题、正文、标签、附件…" aria-label="预览快速搜索" autocomplete="off"><button type="button" id="readerClearSearch" aria-label="清空预览搜索">×</button></label><div class="filters" id="readerTypes" aria-label="预览类型筛选"></div><div class="reader-filter-row"><select id="readerCategory" aria-label="预览分类筛选"></select><select id="readerSort" aria-label="预览排序"><option value="updated">最近更新</option><option value="created">最新创建</option><option value="title">标题排序</option></select></div><button type="button" id="readerTagScope" class="reader-tag-scope" hidden></button></div>
+   <p id="readerFilteredNotice" class="reader-filter-notice" hidden>当前预览不在筛选结果中</p><nav id="readerIndexList" aria-label="记录切换列表"></nav>
+  </aside>
+  <div class="reader-main" id="readerMain">
+  <div class="reader-toolbar"><button type="button" id="backToLibrary">← 返回列表</button><div><button type="button" id="copyReaderBody">复制正文</button><button type="button" id="editReader" class="primary">编辑记录</button></div></div>
+  <article class="reader-paper"><header class="reader-heading"><div id="readerMeta" class="reader-meta"></div><h1 id="readerTitle"></h1><div id="readerTags" class="tags"></div></header><div id="readerBody" class="reader-body"></div><div id="readerImages" class="reader-images"></div><section id="readerAttachments" class="reader-attachments" hidden><h2>附件</h2><div id="readerFiles"></div></section></article>
+  </div>
+ </section>
 </main>
 <input id="fileInput" type="file" multiple hidden><div id="dropOverlay" hidden><div>＋<h2>放下文件，收好灵感</h2><p>图片、文档和其他文件都可以</p></div></div>
 <dialog id="editor"><form id="noteForm"><div class="dialog-head"><span id="editorLabel">新建记录</span><button type="button" class="icon-button" id="closeEditor" aria-label="关闭">×</button></div><div class="editor-body"><p id="editorError" class="inline-error" role="alert" hidden></p><input id="titleInput" class="title-input" placeholder="给这份灵感一个标题" aria-label="标题" maxlength="200"><div class="editor-meta"><select id="typeInput" aria-label="记录类型"><option value="text">文字笔记</option><option value="sticky">灵感便签</option><option value="image">截图 / 图片</option><option value="file">文件资料</option></select><select id="categoryInput" aria-label="分类"></select><label><input type="checkbox" id="starInput"> 收藏</label><label><input type="checkbox" id="pinInput"> 置顶</label></div><section class="tag-editor" aria-label="记录标签"><div class="tag-heading"><strong>标签</strong><small>点击修改 · ＋ 新增</small></div><div id="tagChips" class="tag-chips"></div><p id="tagError" class="tag-error" role="alert" hidden></p></section><textarea id="bodyInput" placeholder="写下想法、资料摘要，或给附件加一些备注…" aria-label="正文"></textarea><div id="attachments"></div><button type="button" id="attachButton" class="attach-button">＋ 添加附件 <span>也可以直接粘贴截图</span></button></div><div class="dialog-footer"><span id="saveHint">保存到本地 data 文件夹</span><button type="button" id="cancelEditor">取消</button><button class="primary" id="saveNote" type="submit">保存记录 <kbd>Ctrl ↵</kbd></button></div></form></dialog>
